@@ -35,7 +35,15 @@ Download the following dataset from the official website (https://rdr.kuleuven.b
    
     Lunetv1
     ├── Databases
-    │   ├── UZLF
+    │   ├── UZLF_TRAIN
+    │   │   ├── images
+    │   │   ├── artery
+    │   │   ├── veins
+    │   ├── UZLF_VAL
+    │   │   ├── images
+    │   │   ├── artery
+    │   │   ├── veins
+    │   ├── UZLF_TEST
     │   │   ├── images
     │   │   ├── artery
     │   │   ├── veins
