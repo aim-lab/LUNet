@@ -51,9 +51,6 @@ source lunet_env/bin/activate
 python -u main.py Databases/ lunet_model
 ```
 
-CUDA_VISIBLE_DEVICES=2 python -u main.py ../Databases/ lunet_model
-
-
 ### Evaluation
 Run the following command:
 ```bash
