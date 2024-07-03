@@ -3,7 +3,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("path", help="path of the dataset root",)
 parser.add_argument("model_name", help = "name of the saved model",)
-parser.add_argument("--use_TTDA", help = "using TTDA or not", type=bool, default=True)
+parser.add_argument("--use_TTDA", help="Using TTDA or not", action='store_true')
 args = parser.parse_args()
 Path = args.path
 model_name = args.model_name
@@ -92,7 +92,7 @@ def make_pred(batch_x):
 for dataset in test_list:
     AUTOTUNE = tf.data.experimental.AUTOTUNE
     #Create a dataset folder within the prediction folder
-    dataset_name = dataset.split('/')[1]
+    dataset_name = dataset.split('/')[-2]
     os.makedirs("predictions/"+dataset_name,exist_ok=True)
 
     #loading the dataset
@@ -112,8 +112,14 @@ for dataset in test_list:
         else:
             pred = my_model(x, training=False)
         pred = pred * x[:,:,:,:1]
+        ###Computing score
+        veins_dice.append(dice_1_1(out, pred))
+        artery_dice.append(dice_1_0(out, pred))
+        global_.append(dice_1_2(out, pred))
+
         #Remove the padding added to the image
         pred = tf.image.resize(pred[:,14:-14,14:-14],(orig_size[0,0], orig_size[0,1]))
+
         #Storing the pred into a RGBA image prediction
         prediction = np.zeros((orig_size[0,0], orig_size[0,1],4))
         prediction[:,:,0] = 255*(np.array(pred)[0,:,:,0] > 0)
@@ -126,5 +132,8 @@ for dataset in test_list:
         # Save the image
         file_name = str(name.numpy())[:-2]
         base_name = str(os.path.basename(file_name)).replace('jpg','png')
-        dataset_name = dataset.split('/')[1]
-        prediction_image.save(f"Pred_1_all_data/{dataset_name}/{base_name}")
+        prediction_image.save(f"predictions/{dataset_name}/{base_name}")
+
+    print(dataset + ' : veins dice test : ' ,np.array(veins_dice).mean())
+    print(dataset + ' : artery dice test : ' ,np.array(artery_dice).mean())
+    print(dataset + ' : gloabl dice test: ' ,np.array(global_).mean())

@@ -64,9 +64,8 @@ Run the following command:
 ```bash
 cd LunetV1
 source lunet_env/bin/activate
-python -u eval_all.py Databases/ lunet_model_best --use_TTDA True #Replace by false if you dont want to use test time data augmentation during inference
+python -u eval_all.py Databases/ lunet_model --use_TTDA #Remove --use_TTDA if you dont want to use test time data augmentation during inference
 ```
-
 
 ### Citation
 If you find this code or data to be useful for your research, please consider citing the following papers.
