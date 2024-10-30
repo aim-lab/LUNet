@@ -33,7 +33,7 @@ pip install -r requirements.txt
 ### Data preparation
 Download the following dataset from the official website (https://rdr.kuleuven.be/dataset.xhtml?persistentId=doi:10.48804/Z7SHGO), and organize it as follows:
    
-    Lunetv1
+    LUNet
     ├── Databases
     │   ├── UZLF_TRAIN
     │   │   ├── images
@@ -50,7 +50,7 @@ Download the following dataset from the official website (https://rdr.kuleuven.b
 
 After install the external datasets from PVBM:
 ```bash
-cd Lunet
+cd LUNet
 source lunet_env/bin/activate
 python -u install_pvbm_datasets.py
 ```
@@ -60,7 +60,7 @@ python -u install_pvbm_datasets.py
 Run the following command:
 (Original LUNet model have been trained using 8 A100-40gb GPUs and have been trained with a slightly different version of the UZLF dataset which can explain minor differences in performance).
 ```bash
-cd Lunet
+cd LUNet
 source lunet_env/bin/activate
 python -u main.py Databases/ lunet_model
 ```
@@ -68,7 +68,7 @@ python -u main.py Databases/ lunet_model
 ### Evaluation
 Run with test-time data augmentation (higher performance):
 ```bash
-cd Lunet
+cd LUNet
 source lunet_env/bin/activate
 python -u eval_all.py Databases/ lunet_model --use_TTDA --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
 #Remove --use_TTDA if you dont want to use test time data augmentation during inference
@@ -77,7 +77,7 @@ python -u eval_all.py Databases/ lunet_model --use_TTDA --datasets_test UZLF_VAL
 
 Run without test-time data augmentation (faster inference):
 ```bash
-cd Lunet
+cd LUNet
 source lunet_env/bin/activate
 python -u eval_all.py Databases/ lunet_model --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
 ```
