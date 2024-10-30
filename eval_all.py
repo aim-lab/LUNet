@@ -4,6 +4,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("path", help="path of the dataset root",)
 parser.add_argument("model_name", help = "name of the saved model",)
 parser.add_argument("--use_TTDA", help="Using TTDA or not", action='store_true')
+parser.add_argument(
+    "--datasets_test",
+    nargs='+',
+    default=["UZLF_VAL", "UZLF_TEST"],
+    help="List of test datasets (default: ['UZLF_VAL', 'UZLF_TEST'])"
+)
 args = parser.parse_args()
 Path = args.path
 model_name = args.model_name
@@ -40,7 +46,7 @@ tf.config.experimental.enable_op_determinism()
 final_shape = 1472
 
 ##Test tensorflow dataset creation
-DATASETS_TEST = ["UZLF_VAL", "UZLF_TEST"]
+DATASETS_TEST = args.datasets_test
 
 test_list = [Path + element + "/images" for element in DATASETS_TEST]
 
@@ -113,9 +119,11 @@ for dataset in test_list:
             pred = my_model(x, training=False)
         pred = pred * x[:,:,:,:1]
         ###Computing score
-        veins_dice.append(dice_1_1(out, pred))
-        artery_dice.append(dice_1_0(out, pred))
-        global_.append(dice_1_2(out, pred))
+        unknown = out[:,:,:,3:4]
+
+        veins_dice.append(dice_1_1(out, pred, unknown=unknown))
+        artery_dice.append(dice_1_0(out, pred, unknown=unknown))
+        global_.append(dice_1_2(out, pred, unknown=unknown))
 
         #Remove the padding added to the image
         pred = tf.image.resize(pred[:,14:-14,14:-14],(orig_size[0,0], orig_size[0,1]))

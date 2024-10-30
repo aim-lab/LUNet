@@ -48,7 +48,13 @@ Download the following dataset from the official website (https://rdr.kuleuven.b
     │   │   ├── artery
     │   │   ├── veins
 
- 
+After install the external datasets from PVBM:
+```bash
+cd LunetV1
+source lunet_env/bin/activate
+python -u install_pvbm_datasets.py
+```
+
 ### Training
 
 Run the following command:
@@ -60,11 +66,20 @@ python -u main.py Databases/ lunet_model
 ```
 
 ### Evaluation
-Run the following command:
+Run with test-time data augmentation (higher performance):
 ```bash
 cd LunetV1
 source lunet_env/bin/activate
-python -u eval_all.py Databases/ lunet_model --use_TTDA #Remove --use_TTDA if you dont want to use test time data augmentation during inference
+python -u eval_all.py Databases/ lunet_model --use_TTDA --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
+#Remove --use_TTDA if you dont want to use test time data augmentation during inference
+#You can change the list of the test dataset
+```
+
+Run without test-time data augmentation (faster inference):
+```bash
+cd LunetV1
+source lunet_env/bin/activate
+python -u eval_all.py Databases/ lunet_model --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
 ```
 
 ### Citation
@@ -101,3 +116,18 @@ If you find this code or data to be useful for your research, please consider ci
         pages={257},
         year={2024},
         publisher={Nature Publishing Group UK London}}
+
+    @InProceedings{10.1007/978-3-031-25066-8_15,
+        author="Fhima, Jonathan and Eijgen, Jan Van and Stalmans, Ingeborg and Men, Yevgeniy and Freiman, Moti and Behar, Joachim A.",
+        title="PVBM: A Python Vasculature Biomarker Toolbox Based on Retinal Blood Vessel Segmentation",
+        booktitle="Computer Vision -- ECCV 2022 Workshops",
+        year="2023",
+        publisher="Springer Nature Switzerland",
+        address="Cham",
+        pages="296--312",
+        isbn="978-3-031-25066-8"
+        }
+
+
+
+    

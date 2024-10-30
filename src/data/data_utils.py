@@ -1,16 +1,23 @@
 import tensorflow as tf
 import tensorflow_addons as tfa
 import math
-def padding(x,y,z):
+import os
+def padding(x,y,z,u = None):
     x = tf.image.pad_to_bounding_box(x, 14, 14, 1472, 1472) 
     y = tf.image.pad_to_bounding_box(y, 14, 14, 1472, 1472)
     z = tf.image.pad_to_bounding_box(z, 14, 14, 1472, 1472)
+    if u is not None:
+        u = tf.image.pad_to_bounding_box(u, 14, 14, 1472, 1472)
+        return x, y, z,u
     return x,y,z
 
-def normalize(x, y,z):
+def normalize(x, y,z,u = None):
     x = tf.cast(x, tf.float32) / 255.0
     y = tf.cast(y,tf.float32)/255.0
     z = tf.cast(z,tf.float32)/255.0
+    if u is not None:
+        u = tf.cast(u,tf.float32)/255.0
+        return x, y, z,u
     return x, y,z
     
 # Define the brightness, contrast, and saturation jitter values
@@ -215,7 +222,8 @@ def parse_image_tf_test_with_name(x):
     name = x
     y = tf.strings.regex_replace(x,"images", "veins")
     z = tf.strings.regex_replace(x,"images", "artery")
-    
+    u = tf.strings.regex_replace(x,"images", "unknown")
+
     x = tf.io.read_file(x)
     x = tf.io.decode_image(x, channels = 3,expand_animations=False)
     
@@ -224,6 +232,13 @@ def parse_image_tf_test_with_name(x):
     
     z = tf.io.read_file(z)
     z = tf.io.decode_image(z, channels = 1,expand_animations=False)
+
+    try:
+        u = tf.io.read_file(u)
+        u = tf.io.decode_image(u, channels=1, expand_animations=False)
+    except:
+        # Create a tensor of zeros with the same shape as 'z'
+        u = tf.zeros_like(z)
     
     original_size = tf.shape(x)[:2]
 
@@ -231,13 +246,15 @@ def parse_image_tf_test_with_name(x):
     x = tf.image.resize(x,(1444,1444))
     y = tf.image.resize(y,(1444,1444),method = "nearest")
     z = tf.image.resize(z,(1444,1444),method = "nearest")
+    u = tf.image.resize(u,(1444,1444),method = "nearest")
+
     
-    x,y,z = padding(x,y,z)
+    x,y,z,u = padding(x,y,z,u=u)
     
-    x,y,z = normalize(x,y,z)
+    x,y,z,u = normalize(x,y,z,u=u)
     
-    out2 = tf.math.maximum(y,z)
-    out = tf.concat([y, z,out2], -1)
+    out2 = tf.maximum(u,tf.math.maximum(y,z))
+    out = tf.concat([y, z,out2,u], -1)
     
     return x,out,name, original_size
     
