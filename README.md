@@ -24,7 +24,7 @@ LUNet: deep learning for the segmentation of arterioles and venules in high reso
 
 First, clone this repository and run install the environment:
 ```bash
-cd LunetV1
+cd Lunet
 python -m venv lunet_env
 source lunet_env/bin/activate
 pip install -r requirements.txt
@@ -50,7 +50,7 @@ Download the following dataset from the official website (https://rdr.kuleuven.b
 
 After install the external datasets from PVBM:
 ```bash
-cd LunetV1
+cd Lunet
 source lunet_env/bin/activate
 python -u install_pvbm_datasets.py
 ```
@@ -60,7 +60,7 @@ python -u install_pvbm_datasets.py
 Run the following command:
 (Original LUNet model have been trained using 8 A100-40gb GPUs).
 ```bash
-cd LunetV1
+cd Lunet
 source lunet_env/bin/activate
 python -u main.py Databases/ lunet_model
 ```
@@ -68,7 +68,7 @@ python -u main.py Databases/ lunet_model
 ### Evaluation
 Run with test-time data augmentation (higher performance):
 ```bash
-cd LunetV1
+cd Lunet
 source lunet_env/bin/activate
 python -u eval_all.py Databases/ lunet_model --use_TTDA --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
 #Remove --use_TTDA if you dont want to use test time data augmentation during inference
@@ -77,7 +77,7 @@ python -u eval_all.py Databases/ lunet_model --use_TTDA --datasets_test UZLF_VAL
 
 Run without test-time data augmentation (faster inference):
 ```bash
-cd LunetV1
+cd Lunet
 source lunet_env/bin/activate
 python -u eval_all.py Databases/ lunet_model --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
 ```

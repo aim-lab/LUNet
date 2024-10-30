@@ -233,12 +233,25 @@ def parse_image_tf_test_with_name(x):
     z = tf.io.read_file(z)
     z = tf.io.decode_image(z, channels = 1,expand_animations=False)
 
-    try:
-        u = tf.io.read_file(u)
-        u = tf.io.decode_image(u, channels=1, expand_animations=False)
-    except:
-        # Create a tensor of zeros with the same shape as 'z'
-        u = tf.zeros_like(z)
+    # Function to check if file exists
+    def file_exists(path):
+        path_str = path.numpy().decode('utf-8')
+        return tf.io.gfile.exists(path_str)
+
+    # Use tf.py_function to check file existence
+    u_exists = tf.py_function(file_exists, [u], tf.bool)
+    u_exists.set_shape(())
+
+    # Conditionally read 'u' or create zero tensor
+    def read_u():
+        u_content = tf.io.read_file(u)
+        u_decoded = tf.io.decode_image(u_content, channels=1, expand_animations=False)
+        return u_decoded
+
+    def zero_u():
+        return tf.zeros([1444, 1444, 1], dtype=tf.uint8)
+
+    u = tf.cond(u_exists, read_u, zero_u)
     
     original_size = tf.shape(x)[:2]
 

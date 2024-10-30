@@ -14,8 +14,8 @@ def dice_1_0(y_true,y_pred,smooth = 1e-10,unknown = None):
     y_true0 = y_true[:,:,:,:1]
     y_pred0 = y_pred[:,:,:,:1]
     if unknown is not None:
-        y_true0 = y_true0*unknown
-        y_pred0 = y_pred0*unknown
+        y_true0 = y_true0*(1-unknown)
+        y_pred0 = y_pred0*(1-unknown)
     return dice_1(y_true0,y_pred0) 
 
 ## Extraction of the second channel then computation of the dice score of this specific channel
@@ -23,8 +23,8 @@ def dice_1_1(y_true,y_pred,smooth = 1e-10, unknown = None):
     y_true1 = y_true[:,:,:,1:2]
     y_pred1 = y_pred[:,:,:,1:2]
     if unknown is not None:
-        y_true1 = y_true1*unknown
-        y_pred1 = y_pred1*unknown
+        y_true1 = y_true1*(1-unknown)
+        y_pred1 = y_pred1*(1-unknown)
     return dice_1(y_true1,y_pred1) 
 
 ## Extraction of the third channel then computation of the dice score of this specific channel
@@ -32,6 +32,6 @@ def dice_1_2(y_true,y_pred,smooth = 1e-10,unknown = None):
     y_true1 = y_true[:,:,:,2:3]
     y_pred1 = y_pred[:,:,:,2:3]
     if unknown is not None:
-        y_true1 = y_true1*unknown
-        y_pred1 = y_pred1*unknown
+        y_true1 = y_true1*(1-unknown)
+        y_pred1 = y_pred1*(1-unknown)
     return dice_1(y_true1,y_pred1) 
