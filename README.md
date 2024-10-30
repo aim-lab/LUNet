@@ -58,7 +58,7 @@ python -u install_pvbm_datasets.py
 ### Training
 
 Run the following command:
-(Original LUNet model have been trained using 8 A100-40gb GPUs).
+(Original LUNet model have been trained using 8 A100-40gb GPUs and have been trained with a slightly different version of the UZLF dataset which can explain minor differences in performance).
 ```bash
 cd Lunet
 source lunet_env/bin/activate
