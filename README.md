@@ -24,7 +24,7 @@ LUNet: deep learning for the segmentation of arterioles and venules in high reso
 
 First, clone this repository and run install the environment:
 ```bash
-cd Lunet
+cd LUNet
 python -m venv lunet_env
 source lunet_env/bin/activate
 pip install -r requirements.txt
