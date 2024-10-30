@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ```
 
 ### Data preparation
-Download the UZLF dataset from the official website (https://rdr.kuleuven.be/dataset.xhtml?persistentId=doi:10.48804/Z7SHGO), and organize it as follows:
+Download the UZLF (aka Leuven-Haifa) dataset from the official website (https://rdr.kuleuven.be/dataset.xhtml?persistentId=doi:10.48804/Z7SHGO), and organize it as follows:
    
     LUNet
     ├── Databases
