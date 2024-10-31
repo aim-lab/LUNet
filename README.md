@@ -81,6 +81,38 @@ cd LUNet
 source lunet_env/bin/activate
 python -u eval_all.py Databases/ lunet_model --datasets_test UZLF_VAL UZLF_TEST CropHRF INSPIRE
 ```
+### Main Results
+
+<table>
+  <tr>
+    <th rowspan="2">Method</th>
+    <th colspan="2">UZLF test</th>
+    <th colspan="2">LES-AV</th>
+    <th colspan="2">INSPIRE-AVR</th>
+    <th colspan="2">Cropped HRF</th>
+  </tr>
+  <tr>
+    <th>Artery</th>
+    <th>Vein</th>
+    <th>Artery</th>
+    <th>Vein</th>
+    <th>Artery</th>
+    <th>Vein</th>
+    <th>Artery</th>
+    <th>Vein</th>
+  </tr>
+  <tr>
+    <td>LUNet</td>
+    <td>82.0</td>
+    <td>84.5</td>
+    <td>82.3</td>
+    <td>84.8</td>
+    <td>73.6</td>
+    <td>77.5</td>
+    <td>78.1</td>
+    <td>80.4</td>
+  </tr>
+</table>
 
 ### Citation
 If you find this code or data to be useful for your research, please consider citing the following papers.
