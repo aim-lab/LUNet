@@ -51,7 +51,7 @@ Download the UZLF (aka Leuven-Haifa) dataset from the official website (https://
     │   │   ├── artery
     │   │   ├── veins
 
-After install the external datasets from PVBM:
+After install the external datasets from PVBM (https://pvbm.readthedocs.io/):
 ```bash
 cd LUNet
 source lunet_env/bin/activate
