@@ -1,4 +1,4 @@
-[![Technical Report](https://img.shields.io/static/v1?label=Technical%20Report&message=PDF&labelColor=gray&color=red)](https://iopscience.iop.org/article/10.1088/1361-6579/ad3d28/pdf)
+[![Technical Report](https://img.shields.io/static/v1?label=Technical%20Report&message=PDF&labelColor=gray&color=red)]([https://iopscience.iop.org/article/10.1088/1361-6579/ad3d28/pdf](https://iopscience.iop.org/article/10.1088/1361-6579/ad3d28/meta))
 [![Download on the App Store](https://img.shields.io/badge/Download_on_the-App_Store-teal.svg)](https://apps.apple.com/fr/app/lirot-ai/id6478242092)
 
 
