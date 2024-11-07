@@ -131,17 +131,6 @@ If you find this code or data to be useful for your research, please consider ci
         publisher={IOP Publishing}
     }
 
-    @INPROCEEDINGS{10081641,
-        author={Fhima, Jonathan and Van Eijgen, Jan and Freiman, Moti and Stalmans, Ingeborg and Behar, Joachim A},
-        booktitle={2022 Computing in Cardiology (CinC)}, 
-        title={Lirot.ai: A Novel Platform for Crowd-Sourcing Retinal Image Segmentations}, 
-        year={2022},
-        volume={498},
-        number={},
-        pages={1-4},
-        keywords={Performance evaluation;Deep learning;Image segmentation;Databases;Data science;Retina;Data models},
-        doi={10.22489/CinC.2022.060}}
-
     @article{van2024leuven,
         title={Leuven-Haifa High-Resolution Fundus Image Dataset for Retinal Blood Vessel Segmentation and Glaucoma Diagnosis},
         author={Van Eijgen, Jan and Fhima, Jonathan and Billen Moulin-Roms{\'e}e, Marie-Isaline and Behar, Joachim A and Christinaki, Eirini and Stalmans, Ingeborg},
