@@ -117,6 +117,10 @@ python -u eval_all.py Databases/ lunet_model --datasets_test UZLF_VAL UZLF_TEST 
   </tr>
 </table>
 
+### LICENSE
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](LICENSE), which prohibits commercial use.
+
+
 ### Citation
 If you find this code or data to be useful for your research, please consider citing the following papers.
     
