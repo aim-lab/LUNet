@@ -1,5 +1,5 @@
 [![Technical Report](https://img.shields.io/static/v1?label=Technical%20Report&message=PDF&labelColor=gray&color=red)](https://iopscience.iop.org/article/10.1088/1361-6579/ad3d28/meta)
-[![Dataset](https://img.shields.io/static/v1?label=Dataset&message=KU%20Leuven&labelColor=gray&color=blue)](https://rdr.kuleuven.be/dataset.xhtml?persistentId=doi:10.48804/Z7SHGO)
+[![Dataset](https://img.shields.io/static/v1?label=Dataset&message=Leuven-Haifa&labelColor=gray&color=blue)](https://rdr.kuleuven.be/dataset.xhtml?persistentId=doi:10.48804/Z7SHGO)
 <h1 align="center">
   <br>
 LUNet: deep learning for the segmentation of arterioles and venules in high resolution fundus images  <br>
